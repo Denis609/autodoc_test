@@ -3,9 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/koles/AndroidStudioProjects/MyApplication2/app/src/main/res/drawable/search_background.xml" value="0.1835" />
         <entry key="..\:/Users/koles/AndroidStudioProjects/MyApplication2/app/src/main/res/layout/about_fragment.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/koles/AndroidStudioProjects/MyApplication2/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/koles/AndroidStudioProjects/MyApplication2/app/src/main/res/layout/home_fragment.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/koles/AndroidStudioProjects/MyApplication2/app/src/main/res/layout/home_fragment.xml" value="0.2196969696969697" />
+        <entry key="..\:/Users/koles/AndroidStudioProjects/MyApplication2/app/src/main/res/layout/repositories_item.xml" value="0.35104166666666664" />
+        <entry key="..\:/Users/koles/AndroidStudioProjects/MyApplication2/app/src/main/res/layout/reps_fragment.xml" value="0.1" />
+        <entry key="..\:/Users/koles/AndroidStudioProjects/MyApplication2/app/src/main/res/layout/reps_item.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/koles/AndroidStudioProjects/MyApplication2/app/src/main/res/menu/bottom_nav_menu.xml" value="0.36666666666666664" />
       </map>
     </option>

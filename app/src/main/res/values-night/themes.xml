@@ -15,4 +15,9 @@
         <item name="android:statusBarColor" >@color/night_theme_background</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="SearchView">
+        <item name="boxStrokeWidth">2dp</item>
+        <item name="boxStrokeColor">@color/white</item>
+    </style>
 </resources>

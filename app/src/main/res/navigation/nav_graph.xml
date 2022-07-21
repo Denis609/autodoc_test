@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_graph">
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/home">
 
+    <fragment
+        android:id="@+id/home"
+        android:name="ru.autodoc.tz.ui.home.RepsFragment"
+        tools:layout="@layout/reps_fragment" />
+
+    <fragment
+        android:id="@+id/about"
+        android:name="ru.autodoc.tz.ui.about.AboutFragment"
+        tools:layout="@layout/about_fragment" />
 </navigation>
