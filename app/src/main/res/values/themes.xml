@@ -1,0 +1,19 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+        <!-- Base application theme. -->
+        <style name="Theme.Autodoc" parent="Theme.MaterialComponents.Light.NoActionBar">
+            <!-- Primary brand color. -->
+            <item name="android:background">@color/white_theme_background</item>
+            <item name="android:colorControlActivated">@color/blue_color</item>
+
+            <item name="colorPrimary">@color/white_theme_background</item>
+            <item name="colorPrimaryVariant">@color/white_theme_background</item>
+            <item name="colorOnPrimary">@color/blue_color</item>
+            <!-- Secondary brand color. -->
+            <item name="colorSecondary">@color/white_theme_background</item>
+            <item name="colorSecondaryVariant">@color/white_theme_background</item>
+            <item name="colorOnSecondary">@color/blue_color</item>
+            <!-- Status bar color. -->
+            <item name="android:statusBarColor">@color/white_theme_background</item>
+            <!-- Customize your theme here. -->
+        </style>
+</resources>
