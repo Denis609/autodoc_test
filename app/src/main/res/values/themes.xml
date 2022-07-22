@@ -12,7 +12,7 @@
         <item name="colorSecondaryVariant">@color/white_theme_background</item>
         <item name="colorOnSecondary">@color/white_theme_background</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/night_theme_background</item>
+        <item name="android:statusBarColor">@color/white_theme_background</item>
         <!-- Customize your theme here. -->
     </style>
 
@@ -36,5 +36,12 @@
 
     <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
         <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="AboutTextStyle">
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineSpacingExtra">20sp</item>
+
+        <item name="android:textColor">@color/night_color</item>
     </style>
 </resources>

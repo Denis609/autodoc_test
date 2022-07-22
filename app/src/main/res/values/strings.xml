@@ -8,6 +8,9 @@
     <string name="created_date_s">Created: %s</string>
 
     <string name="repositories">Репозитории</string>
+
+    <style name="about">О программе</style>
+
     <string name="user">Профиль</string>
     <string name="retry">Повторить</string>
     <string name="bio_s">BIO: %s</string>
@@ -15,4 +18,6 @@
     <string name="blog">Blog:</string>
     <string name="html_url">GitHub:</string>
     <string name="twitter">Twitter:</string>
+
+    <string name="about_text">Вариант 2\nKotlin, MVVM, Retrofit, ViewBinding, Hilt, Picasso, Paging3, Jetpack navigation\nSearchView для поиска репозиториев\nSwipe to refresh + scroll to top\nПодход Single Activity</string>
 </resources>
