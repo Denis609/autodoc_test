@@ -1,14 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/home">
 
     <fragment
         android:id="@+id/home"
-        android:name="ru.autodoc.tz.ui.home.RepsFragment"
-        tools:layout="@layout/reps_fragment" />
+        android:name="ru.autodoc.tz.ui.reps.RepsFragment"
+        tools:layout="@layout/reps_fragment">
+
+        <action
+            android:id="@+id/action_home_to_user"
+            app:destination="@id/user" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/user"
+        android:name="ru.autodoc.tz.ui.users.UserFragment"
+        tools:layout="@layout/user_fragment">
+
+        <argument
+            android:name="reps"
+            app:argType="ru.autodoc.tz.data.model.Rep" />
+    </fragment>
 
     <fragment
         android:id="@+id/about"

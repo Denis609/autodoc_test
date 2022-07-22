@@ -11,6 +11,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.autodoc.tz.BuildConfig
 import ru.autodoc.tz.data.service.RepsApi
+import ru.autodoc.tz.data.service.UsersApi
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -18,9 +19,17 @@ import javax.inject.Singleton
 @Module
 class NetworkModule {
 
+    companion object {
+        const val baseUrl: String = "https://api.github.com/"
+    }
+
     @Singleton
     @Provides
-    fun provideAGithubApi(retrofit: Retrofit): RepsApi = retrofit.create(RepsApi::class.java)
+    fun provideRepsApi(retrofit: Retrofit): RepsApi = retrofit.create(RepsApi::class.java)
+
+    @Singleton
+    @Provides
+    fun provideUsersApi(retrofit: Retrofit): UsersApi = retrofit.create(UsersApi::class.java)
 
     @Provides
     @Singleton
@@ -33,21 +42,21 @@ class NetworkModule {
         httpLoggingInterceptor: HttpLoggingInterceptor
     ): OkHttpClient =
         OkHttpClient.Builder()
-                .connectTimeout(15L, TimeUnit.SECONDS)
-                .readTimeout(60L, TimeUnit.SECONDS)
-                .writeTimeout(60L, TimeUnit.SECONDS)
-                .addInterceptor(httpLoggingInterceptor)
-                .addInterceptor(Interceptor { chain ->
-                    val builder = chain.request().newBuilder()
-                    builder.header("Accept", "application/json")
-                    return@Interceptor chain.proceed(builder.build())
-                }).build()
+            .connectTimeout(15L, TimeUnit.SECONDS)
+            .readTimeout(60L, TimeUnit.SECONDS)
+            .writeTimeout(60L, TimeUnit.SECONDS)
+            .addInterceptor(httpLoggingInterceptor)
+            .addInterceptor(Interceptor { chain ->
+                val builder = chain.request().newBuilder()
+                builder.header("Accept", "application/json")
+                return@Interceptor chain.proceed(builder.build())
+            }).build()
 
     @Provides
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder().apply {
-            baseUrl("https://api.github.com/")
+            baseUrl(baseUrl)
             addConverterFactory(GsonConverterFactory.create())
             client(okHttpClient)
         }.build()

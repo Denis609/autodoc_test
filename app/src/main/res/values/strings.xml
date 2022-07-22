@@ -3,5 +3,16 @@
 
     <string name="home">Главная</string>
     <string name="about">О программе</string>
-    
+
+    <string name="updated_date_s">Updated: %s</string>
+    <string name="created_date_s">Created: %s</string>
+
+    <string name="repositories">Репозитории</string>
+    <string name="user">Профиль</string>
+    <string name="retry">Повторить</string>
+    <string name="bio_s">BIO: %s</string>
+    <string name="follow_s_s">Following: %s\nFollowers: %s</string>
+    <string name="blog">Blog:</string>
+    <string name="html_url">GitHub:</string>
+    <string name="twitter">Twitter:</string>
 </resources>

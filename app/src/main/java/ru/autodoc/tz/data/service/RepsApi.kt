@@ -4,7 +4,7 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 import ru.autodoc.tz.data.model.PagedResponse
-import ru.autodoc.tz.data.model.Reps
+import ru.autodoc.tz.data.model.Rep
 
 interface RepsApi {
 
@@ -13,6 +13,5 @@ interface RepsApi {
         @Query("q") query: String,
         @Query("page") page: Int = 1,
         @Query("per_page") perPage: Int = 20
-    ): Response<PagedResponse<Reps>>
-
+    ): Response<PagedResponse<Rep>>
 }

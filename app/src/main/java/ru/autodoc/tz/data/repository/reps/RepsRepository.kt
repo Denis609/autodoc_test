@@ -2,10 +2,8 @@ package ru.autodoc.tz.data.repository.reps
 
 import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
-import retrofit2.http.Query
-import ru.autodoc.tz.data.model.Reps
+import ru.autodoc.tz.data.model.Rep
 
 interface RepsRepository {
-
-    suspend fun getReps(query: String): Flow<PagingData<Reps>>
+    suspend fun getReps(query: String): Flow<PagingData<Rep>>
 }

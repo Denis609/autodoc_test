@@ -3,16 +3,17 @@ package ru.autodoc.tz.data.paging
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import retrofit2.HttpException
-import ru.autodoc.tz.data.model.Reps
+import ru.autodoc.tz.data.model.Rep
 import ru.autodoc.tz.data.service.RepsApi
 import java.io.IOException
+import javax.inject.Inject
 
-class RepsPagingDataSource(
+class RepsPagingDataSource @Inject constructor(
     private val service: RepsApi,
     private val query: String
-) : PagingSource<Int, Reps>() {
+) : PagingSource<Int, Rep>() {
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Reps> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Rep> {
         val pageNumber = params.key ?: 1
         return try {
             val response = service.getReps(query, pageNumber)
@@ -37,9 +38,9 @@ class RepsPagingDataSource(
         }
     }
 
-    override fun getRefreshKey(state: PagingState<Int, Reps>): Int? =
+    override fun getRefreshKey(state: PagingState<Int, Rep>): Int? =
         state.anchorPosition?.let {
-        state.closestPageToPosition(it)?.prevKey?.plus(1)
-            ?: state.closestPageToPosition(it)?.nextKey?.minus(1)
+            state.closestPageToPosition(it)?.prevKey?.plus(1)
+                ?: state.closestPageToPosition(it)?.nextKey?.minus(1)
         }
 }
