@@ -67,6 +67,7 @@
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:layout_marginTop="12dp"
         app:layout_constraintTop_toBottomOf="@id/avatar">
 
@@ -124,26 +125,26 @@
             tools:text="Blog" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/gitHubTitle"
+            android:id="@+id/htmlUrlTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:paddingVertical="8dp"
             android:text="@string/html_url"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@id/gitHub"
+            app:layout_constraintEnd_toStartOf="@id/htmlUrl"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/blog" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/gitHub"
+            android:id="@+id/htmlUrl"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:paddingHorizontal="8dp"
             android:paddingVertical="8dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/gitHubTitle"
-            app:layout_constraintTop_toTopOf="@id/gitHubTitle"
+            app:layout_constraintStart_toEndOf="@id/htmlUrlTitle"
+            app:layout_constraintTop_toTopOf="@id/htmlUrlTitle"
             tools:text="github" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -156,7 +157,7 @@
             android:text="@string/twitter"
             app:layout_constraintEnd_toStartOf="@id/twitter"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/gitHub" />
+            app:layout_constraintTop_toBottomOf="@id/htmlUrl" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/twitter"

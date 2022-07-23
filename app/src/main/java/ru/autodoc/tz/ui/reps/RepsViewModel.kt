@@ -20,8 +20,8 @@ class RepsViewModel @Inject constructor(
 
     fun getReps(query: String) {
         viewModelScope.launch(Dispatchers.IO + handler) {
-            server.getReps(query)
-                .cachedIn(viewModelScope)
+            server.getReps(query = query)
+                .cachedIn(scope = viewModelScope)
                 .collect {
                     reps.value = it
                 }

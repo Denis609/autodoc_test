@@ -16,7 +16,7 @@ class RepsPagingDataSource @Inject constructor(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Rep> {
         val pageNumber = params.key ?: 1
         return try {
-            val response = service.getReps(query, pageNumber)
+            val response = service.getReps(query = query, page = pageNumber)
             val pagedResponse = response.body()
             val data = pagedResponse?.items
 
@@ -32,15 +32,15 @@ class RepsPagingDataSource @Inject constructor(
                 nextKey = nextPageNumber
             )
         } catch (exception: IOException) {
-            return LoadResult.Error(exception)
+            return LoadResult.Error(throwable = exception)
         } catch (exception: HttpException) {
-            return LoadResult.Error(exception)
+            return LoadResult.Error(throwable = exception)
         }
     }
 
     override fun getRefreshKey(state: PagingState<Int, Rep>): Int? =
         state.anchorPosition?.let {
-            state.closestPageToPosition(it)?.prevKey?.plus(1)
-                ?: state.closestPageToPosition(it)?.nextKey?.minus(1)
+            state.closestPageToPosition(anchorPosition = it)?.prevKey?.plus(other = 1)
+                ?: state.closestPageToPosition(anchorPosition = it)?.nextKey?.minus(other = 1)
         }
 }

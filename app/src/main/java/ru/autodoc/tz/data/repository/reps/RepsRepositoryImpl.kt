@@ -16,7 +16,7 @@ class RepsRepositoryImpl @Inject constructor(
     override suspend fun getReps(query: String): Flow<PagingData<Rep>> = Pager(
         config = PagingConfig(pageSize = 20, prefetchDistance = 5),
         pagingSourceFactory = {
-            RepsPagingDataSource(service, query)
+            RepsPagingDataSource(service = service, query = query)
         }
     ).flow
 }

@@ -1,16 +1,21 @@
 package ru.autodoc.tz.data.model
 
+import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 import java.util.*
 
 data class Rep(
     val id: Long = 0,
     val name: String?,
-    val full_name: String?,
+    @SerializedName("full_name")
+    val fullName: String?,
     val language: String?,
     val description: String?,
-    val updated_at: Date?,
-    val created_at: Date,
+    @SerializedName("updated_at")
+    val updatedAt: Date?,
+    @SerializedName("created_at")
+    val createdAt: Date,
     val owner: Owner,
-    val stargazers_count: Int?
+    @SerializedName("stargazers_count")
+    val stargazersCount: Int?
 ) : Serializable

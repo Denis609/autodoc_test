@@ -13,16 +13,18 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.squareup.picasso.Picasso
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import ru.autodoc.tz.R
+import ru.autodoc.tz.base.BaseFragment
 import ru.autodoc.tz.data.model.User
 import ru.autodoc.tz.databinding.UserFragmentBinding
+import ru.autodoc.tz.utils.ImageLoader
 
 @AndroidEntryPoint
-class UserFragment : Fragment() {
+class UserFragment : BaseFragment() {
     private lateinit var binding: UserFragmentBinding
-    private val viewModel: UserViewModel by viewModels()
+    override val viewModel: UserViewModel by viewModels()
     private val args: UserFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -36,26 +38,23 @@ class UserFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getUser(args.reps.owner.login)
-        binding.apply {
-            backIcon.setOnClickListener {
-                findNavController().popBackStack()
-            }
-
-            Picasso
-                .get()
-                .load(args.reps.owner.avatar_url)
-                .fit()
-                .centerCrop()
-                .placeholder(R.drawable.ic_baseline_account_circle_24)
-                .into(avatar)
-            userName.text = args.reps.owner.login
+        binding.backIcon.setOnClickListener {
+            findNavController().popBackStack()
         }
+        setAvatar(url = args.rep.owner.avatarUrl)
+        setUserName(userName = args.rep.owner.login)
+
+        viewModel.getUser(login = args.rep.owner.login)
+
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             viewModel.userData.collect {
-                updateUI(it)
+                updateUI(user = it)
             }
         }
+        showLoadingProgress()
+    }
+
+    private fun showLoadingProgress() {
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             viewModel.loading.collect {
                 binding.progressBar.isVisible = it
@@ -64,55 +63,87 @@ class UserFragment : Fragment() {
         }
     }
 
+    private fun setAvatar(url: String?) {
+        ImageLoader.picasso(
+            url = url,
+            binding.avatar
+        )
+    }
+
+    private fun setUserName(userName: String) {
+        binding.userName.text = userName
+    }
+
     private fun updateUI(user: User?) {
-        user?.let {
-            binding.apply {
-                it.bio?.let { bio.text = getString(R.string.bio_s, it) }
-                follow.text = getString(
-                    R.string.follow_s_s,
-                    it.following,
-                    it.followers
-                )
-                it.blog?.let {
-                    if (it != "") {
-                        blog.paintFlags = blog.paintFlags or Paint.UNDERLINE_TEXT_FLAG
-                        blog.text = it
-                        blog.setOnClickListener { _ ->
-                            val intent = Intent(Intent.ACTION_VIEW)
-                            intent.data = Uri.parse(it)
-                            startActivity(intent)
-                        }
-                    } else {
-                        disableView(blogTitle, blog)
-                    }
-                } ?: run {
-                    disableView(blogTitle, blog)
-                }
-                it.html_url?.let {
-                    gitHub.paintFlags = blog.paintFlags or Paint.UNDERLINE_TEXT_FLAG
-                    gitHub.text = it
+        user?.apply {
+            setBIO(bio = bio)
+            setFollow(following = following, followers = followers)
+            setBlog(blog = blog)
+            setHtmlUrl(htmlUrl = htmlUrl)
+            setTwitterUserName(twitterUserName = twitterUserName)
+        }
+    }
 
-                    gitHub.setOnClickListener { _ ->
-                        val intent = Intent(Intent.ACTION_VIEW)
-                        intent.data = Uri.parse(it)
-                        startActivity(intent)
-                    }
+    private fun setBIO(bio: String?) {
+        bio?.let {
+            binding.bio.text = getString(R.string.bio_s, it)
+        }
+    }
 
-                } ?: run {
-                    disableView(gitHubTitle, gitHub)
-                }
-                it.twitter_username?.let { twitter.text = it } ?: run {
-                    disableView(
-                        twitterTitle,
-                        twitter
-                    )
-                }
+    private fun setFollow(following: Int, followers: Int) {
+        binding.follow.text = getString(
+            R.string.follow_s_s,
+            following,
+            followers
+        )
+    }
+
+    private fun setBlog(blog: String?) {
+        blog?.let {
+            if (it != "") {
+                binding.blog.paintFlags = binding.blog.paintFlags or Paint.UNDERLINE_TEXT_FLAG
+                binding.blog.text = it
+                clickUri(uri = it, view = binding.blog)
+            } else {
+                disableView(viewTitle = binding.blogTitle, view = binding.blog)
             }
+        } ?: run {
+            disableView(viewTitle = binding.blogTitle, view = binding.blog)
+        }
+    }
+
+    private fun setHtmlUrl(htmlUrl: String?) {
+        htmlUrl?.let {
+            binding.htmlUrl.paintFlags = binding.htmlUrl.paintFlags or Paint.UNDERLINE_TEXT_FLAG
+            binding.htmlUrl.text = it
+            clickUri(uri = it, view = binding.htmlUrl)
+        } ?: run {
+            disableView(viewTitle = binding.htmlUrlTitle, view = binding.htmlUrl)
+        }
+    }
+
+    private fun clickUri(uri: String, view: View) {
+        view.setOnClickListener { _ ->
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse(uri)
+            startActivity(intent)
+        }
+    }
+
+    private fun setTwitterUserName(twitterUserName: String?) {
+        twitterUserName?.let {
+            binding.twitter.text = it
+        } ?: run {
+            disableView(viewTitle = binding.twitterTitle, view = binding.twitter)
         }
     }
 
     private fun disableView(viewTitle: View, view: View) {
         viewTitle.isVisible = false
         view.isVisible = false
+    }
+
+    override fun onError(error: String) {
+        Snackbar.make(binding.root, error, Snackbar.LENGTH_LONG).show()
     }
 }

@@ -21,7 +21,7 @@
         tools:layout="@layout/user_fragment">
 
         <argument
-            android:name="reps"
+            android:name="rep"
             app:argType="ru.autodoc.tz.data.model.Rep" />
     </fragment>
 

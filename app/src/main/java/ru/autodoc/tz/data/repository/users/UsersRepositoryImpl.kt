@@ -7,5 +7,5 @@ import javax.inject.Inject
 class UsersRepositoryImpl @Inject constructor(
     private val api: UsersApi
 ) : UsersRepository {
-    override suspend fun getUser(login: String): User = api.getUser(login)
+    override suspend fun getUser(login: String): User = api.getUser(login = login)
 }

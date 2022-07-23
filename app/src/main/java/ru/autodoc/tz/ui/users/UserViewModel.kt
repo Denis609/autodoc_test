@@ -20,7 +20,7 @@ class UserViewModel @Inject constructor(
     fun getUser(login: String) {
         viewModelScope.launch(Dispatchers.IO + handler) {
             loading.value = true
-            userData.value = server.getUser(login)
+            userData.value = server.getUser(login = login)
             loading.value = false
         }
     }

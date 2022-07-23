@@ -19,5 +19,8 @@
     <string name="html_url">GitHub:</string>
     <string name="twitter">Twitter:</string>
 
-    <string name="about_text">Вариант 2\nKotlin, MVVM, Retrofit, ViewBinding, Hilt, Picasso, Paging3, Jetpack navigation\nSearchView для поиска репозиториев\nSwipe to refresh + scroll to top\nПодход Single Activity</string>
+    <string name="about_text">Вариант 2\nKotlin,
+        MVVM, Retrofit, ViewBinding, Hilt, Picasso, Paging3, Jetpack
+        navigation\nSearchView для поиска репозиториев\nSwipe to refresh + scroll to
+        top\nПодход Single Activity</string>
 </resources>

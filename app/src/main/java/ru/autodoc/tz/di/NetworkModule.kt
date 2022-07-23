@@ -42,14 +42,14 @@ class NetworkModule {
         httpLoggingInterceptor: HttpLoggingInterceptor
     ): OkHttpClient =
         OkHttpClient.Builder()
-            .connectTimeout(15L, TimeUnit.SECONDS)
-            .readTimeout(60L, TimeUnit.SECONDS)
-            .writeTimeout(60L, TimeUnit.SECONDS)
-            .addInterceptor(httpLoggingInterceptor)
-            .addInterceptor(Interceptor { chain ->
+            .connectTimeout(timeout = 15L, unit = TimeUnit.SECONDS)
+            .readTimeout(timeout = 60L, unit = TimeUnit.SECONDS)
+            .writeTimeout(timeout = 60L, unit = TimeUnit.SECONDS)
+            .addInterceptor(interceptor = httpLoggingInterceptor)
+            .addInterceptor(interceptor = Interceptor { chain ->
                 val builder = chain.request().newBuilder()
-                builder.header("Accept", "application/json")
-                return@Interceptor chain.proceed(builder.build())
+                builder.header(name = "Accept", value = "application/json")
+                return@Interceptor chain.proceed(request = builder.build())
             }).build()
 
     @Provides
