@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
-open class BaseViewModel : ViewModel() {
+abstract class BaseViewModel : ViewModel() {
 
     val loading = MutableStateFlow<Boolean>(false)
 

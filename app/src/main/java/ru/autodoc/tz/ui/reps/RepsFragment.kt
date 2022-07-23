@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import okhttp3.internal.EMPTY_RESPONSE
 import ru.autodoc.tz.R
 import ru.autodoc.tz.base.BaseFragment
 import ru.autodoc.tz.data.model.Rep
@@ -79,35 +78,30 @@ class RepsFragment : BaseFragment() {
     }
 
     private fun toolbarInit() {
-        queryFocusChangeListener()
-        queryTextListener()
-        isQueryNotEmpty()
-        clickTitle()
+        searchViewFocusChange()
+        searchViewTextChange()
+        searchViewValueInit()
+        clickTitleInit()
     }
 
-    private fun queryFocusChangeListener() {
+    private fun searchViewFocusChange() {
         binding.apply {
             search.setOnQueryTextFocusChangeListener { _, b ->
-                if (b) {
-                    if (search.query.isEmpty()) {
-                        title.isVisible = false
-                        titleMini.isVisible = true
-                        titleMini.animation =
-                            AnimationUtils.loadAnimation(requireContext(), R.anim.up)
-                    }
-                } else {
-                    if (search.query.isEmpty()) {
-                        title.isVisible = true
-                        titleMini.isVisible = false
-                        search.isIconified = true
-                        title.animation = AnimationUtils.loadAnimation(requireContext(), R.anim.up)
-                    }
+                if (b && search.query.isEmpty()) {
+                    title.isVisible = false
+                    titleMini.isVisible = true
+                    titleMini.animation = AnimationUtils.loadAnimation(requireContext(), R.anim.up)
+                } else if (search.query.isEmpty()) {
+                    title.isVisible = true
+                    titleMini.isVisible = false
+                    search.isIconified = true
+                    title.animation = AnimationUtils.loadAnimation(requireContext(), R.anim.up)
                 }
             }
         }
     }
 
-    private fun queryTextListener() {
+    private fun searchViewTextChange() {
         binding.search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 viewLifecycleOwner.lifecycleScope.launch {
@@ -126,7 +120,7 @@ class RepsFragment : BaseFragment() {
         })
     }
 
-    private fun isQueryNotEmpty() {
+    private fun searchViewValueInit() {
         if (globalQuery != "") {
             binding.search.setQuery(globalQuery, false)
             binding.title.isVisible = false
@@ -136,7 +130,7 @@ class RepsFragment : BaseFragment() {
         }
     }
 
-    private fun clickTitle() {
+    private fun clickTitleInit() {
         binding.title.setOnClickListener {
             scrollToTop()
         }
