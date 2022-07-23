@@ -122,7 +122,7 @@ class UserFragment : BaseFragment() {
     }
 
     private fun clickUri(uri: String, view: View) {
-        view.setOnClickListener { _ ->
+        view.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse(uri)
             startActivity(intent)

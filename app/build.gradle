@@ -19,6 +19,18 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    flavorDimensions  "users"
+    productFlavors {
+        userPrivate {
+            dimension "users"
+            applicationIdSuffix  ".private"
+        }
+        userPublic {
+            dimension "users"
+            applicationIdSuffix  ".public"
+        }
+    }
+
     buildFeatures{
         viewBinding true
     }

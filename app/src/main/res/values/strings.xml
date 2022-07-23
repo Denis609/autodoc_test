@@ -23,4 +23,6 @@
         MVVM, Retrofit, ViewBinding, Hilt, Picasso, Paging3, Jetpack
         navigation\nSearchView для поиска репозиториев\nSwipe to refresh + scroll to
         top\nПодход Single Activity</string>
+
+    <string name="profile_not_found">Профиль закрыт</string>
 </resources>
