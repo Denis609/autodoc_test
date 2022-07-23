@@ -28,4 +28,5 @@
     </string>
 
     <string name="profile_not_found">Профиль закрыт</string>
+    <string name="empty_list">Вы пока не искали репозитории!\nВоспользуйтесь поиском :)</string>
 </resources>

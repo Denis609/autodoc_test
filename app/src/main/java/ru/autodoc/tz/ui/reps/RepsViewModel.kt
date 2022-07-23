@@ -16,7 +16,7 @@ class RepsViewModel @Inject constructor(
     private val server: RepsRepository
 ) : BaseViewModel() {
 
-    val reps = MutableStateFlow<PagingData<Rep>>(PagingData.empty())
+    val reps = MutableStateFlow<PagingData<Rep>?>(null)
 
     fun getReps(query: String) {
         viewModelScope.launch(Dispatchers.IO + handler) {

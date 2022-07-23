@@ -59,10 +59,10 @@
                     style="@style/TextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_marginStart="16dp"
                     android:layout_weight="1"
                     android:background="@drawable/border_title"
                     android:gravity="start"
-                    android:layout_marginStart="16dp"
                     android:paddingHorizontal="8dp"
                     android:paddingBottom="4dp"
                     android:text="@string/repositories"
@@ -73,9 +73,19 @@
         </com.google.android.material.appbar.MaterialToolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/emptyList"
+        style="@style/TextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/empty_list"
+        android:textSize="20sp" />
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/refresh_layout"
         android:layout_width="match_parent"
+        android:visibility="gone"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
@@ -84,9 +94,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:visibility="visible"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:itemCount="5"
+            tools:itemCount="0"
             tools:listitem="@layout/reps_item" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

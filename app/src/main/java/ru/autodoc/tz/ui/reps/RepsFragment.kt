@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import okhttp3.internal.EMPTY_RESPONSE
 import ru.autodoc.tz.R
 import ru.autodoc.tz.base.BaseFragment
 import ru.autodoc.tz.data.model.Rep
@@ -54,7 +55,10 @@ class RepsFragment : BaseFragment() {
         binding.items.layoutManager = LinearLayoutManager(requireContext())
         binding.items.adapter = repsAdapter
 
-        binding.refreshLayout.setOnRefreshListener { repsAdapter.refresh() }
+        binding.refreshLayout.setOnRefreshListener {
+            repsAdapter.refresh()
+        }
+
         binding.items.adapter = repsAdapter.withLoadStateFooter(PagingLoadStateAdapter(repsAdapter))
 
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
@@ -65,7 +69,11 @@ class RepsFragment : BaseFragment() {
 
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             viewModel.reps.collect {
-                repsAdapter.submitData(pagingData = it)
+                it?.let {
+                    binding.emptyList.isVisible = false
+                    binding.refreshLayout.isVisible = true
+                    repsAdapter.submitData(pagingData = it)
+                }
             }
         }
     }
