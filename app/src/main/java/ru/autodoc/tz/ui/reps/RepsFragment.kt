@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -54,20 +53,19 @@ class RepsFragment : BaseFragment() {
     private fun adapterInit() {
         binding.items.layoutManager = LinearLayoutManager(requireContext())
         binding.items.adapter = repsAdapter
-        repsAdapter.apply {
-            binding.refreshLayout.setOnRefreshListener { refresh() }
-            binding.items.adapter = withLoadStateFooter(PagingLoadStateAdapter(this))
 
-            viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-                loadStateFlow.collect {
-                    binding.refreshLayout.isRefreshing = it.refresh is LoadState.Loading
-                }
+        binding.refreshLayout.setOnRefreshListener { repsAdapter.refresh() }
+        binding.items.adapter = repsAdapter.withLoadStateFooter(PagingLoadStateAdapter(repsAdapter))
+
+        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+            repsAdapter.loadStateFlow.collect {
+                binding.refreshLayout.isRefreshing = it.refresh is LoadState.Loading
             }
+        }
 
-            viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-                viewModel.reps.collect {
-                    repsAdapter.submitData(pagingData = it)
-                }
+        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+            viewModel.reps.collect {
+                repsAdapter.submitData(pagingData = it)
             }
         }
     }
