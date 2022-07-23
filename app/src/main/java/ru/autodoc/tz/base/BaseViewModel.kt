@@ -19,7 +19,7 @@ open class BaseViewModel : ViewModel() {
         loading.value = false
         println("CoroutineExceptionHandler got $exception")
         viewModelScope.launch {
-            errorChannel.send(exception.message.toString())
+            errorChannel.send(element = exception.message.toString())
         }
     }
 }
