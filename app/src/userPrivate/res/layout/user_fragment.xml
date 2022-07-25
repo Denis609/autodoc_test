@@ -75,6 +75,6 @@
         android:paddingVertical="4dp"
         android:textSize="24sp"
         app:layout_constraintTop_toBottomOf="@id/avatar"
-        android:text="@string/profile_private" />
+        android:text="@string/profile_not_found" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
