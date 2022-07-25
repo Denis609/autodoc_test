@@ -15,7 +15,7 @@ android {
         targetSdk 32
         versionCode 1
         versionName "1.0"
-
+        archivesBaseName = "Autodoc-" + versionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -24,10 +24,12 @@ android {
         userPrivate {
             dimension "users"
             applicationIdSuffix  ".private"
+            versionNameSuffix "-private"
         }
         userPublic {
             dimension "users"
             applicationIdSuffix  ".public"
+            versionNameSuffix "-public"
         }
     }
 
@@ -86,6 +88,11 @@ dependencies {
 
     // swipe
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+
+    // room
+    implementation 'androidx.room:room-runtime:2.4.2'
+    kapt "androidx.room:room-compiler:2.4.2"
+    implementation 'androidx.room:room-ktx:2.4.2'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
