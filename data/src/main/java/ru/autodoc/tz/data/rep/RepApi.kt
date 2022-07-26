@@ -9,7 +9,7 @@ import ru.autodoc.tz.domain.rep.Rep
 interface RepApi {
 
     @GET("search/repositories")
-    suspend fun getReps(
+    suspend fun findAllByQuery(
         @Query("q") query: String,
         @Query("page") page: Int = 1,
         @Query("per_page") perPage: Int = 20

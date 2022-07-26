@@ -7,7 +7,7 @@ import ru.autodoc.tz.domain.user.User
 interface UserApi {
 
     @GET("users/{login}")
-    suspend fun getUser(
+    suspend fun findByLogin(
         @Path("login") login: String
     ): User
 }

@@ -8,19 +8,19 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import ru.autodoc.tz.base.BaseViewModel
 import ru.autodoc.tz.domain.rep.Rep
-import ru.autodoc.tz.domain.rep.RepGetUseCase
+import ru.autodoc.tz.domain.rep.RepFindAllByQueryUseCase
 import javax.inject.Inject
 
 @HiltViewModel
 class RepsViewModel @Inject constructor(
-    private val getRepsUseCase: RepGetUseCase
+    private val repFindAllByQueryUseCase: RepFindAllByQueryUseCase
 ) : BaseViewModel() {
 
     val reps = MutableStateFlow<PagingData<Rep>?>(null)
 
     fun getReps(query: String) {
         viewModelScope.launch(Dispatchers.IO + handler) {
-            getRepsUseCase.execute(query = query)
+            repFindAllByQueryUseCase.execute(query = query)
                 .cachedIn(scope = viewModelScope)
                 .collect {
                     reps.value = it

@@ -6,13 +6,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import ru.autodoc.tz.domain.user.User
-import ru.autodoc.tz.domain.user.UserGetUseCase
+import ru.autodoc.tz.domain.user.UserFindByLoginUseCase
 import ru.autodoc.tz.base.BaseViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class UserViewModel @Inject constructor(
-    private val getUserUseCase: UserGetUseCase
+    private val userFindByLoginUseCase: UserFindByLoginUseCase
 ) : BaseViewModel() {
 
     val userData = MutableStateFlow<User?>(null)
@@ -20,7 +20,7 @@ class UserViewModel @Inject constructor(
     fun getUser(login: String) {
         viewModelScope.launch(Dispatchers.IO + handler) {
             loading.value = true
-            userData.value = getUserUseCase.execute(login = login)
+            userData.value = userFindByLoginUseCase.execute(login = login)
             loading.value = false
         }
     }

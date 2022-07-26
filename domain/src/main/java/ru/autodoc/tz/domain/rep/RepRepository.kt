@@ -4,5 +4,5 @@ import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
 
 interface RepRepository {
-    suspend fun getReps(query: String): Flow<PagingData<Rep>>
+    suspend fun findAllByQuery(query: String): Flow<PagingData<Rep>>
 }

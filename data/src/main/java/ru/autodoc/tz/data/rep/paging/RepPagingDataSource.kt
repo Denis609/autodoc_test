@@ -9,14 +9,14 @@ import java.io.IOException
 import javax.inject.Inject
 
 class RepPagingDataSource @Inject constructor(
-    private val service: RepApi,
+    private val api: RepApi,
     private val query: String
 ) : PagingSource<Int, Rep>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Rep> {
         val pageNumber = params.key ?: 1
         return try {
-            val response = service.getReps(query = query, page = pageNumber)
+            val response = api.findAllByQuery(query = query, page = pageNumber)
             val pagedResponse = response.body()
             val data = pagedResponse?.items
 

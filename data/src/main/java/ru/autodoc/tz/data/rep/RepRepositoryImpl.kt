@@ -10,13 +10,13 @@ import ru.autodoc.tz.domain.rep.RepRepository
 import javax.inject.Inject
 
 class RepRepositoryImpl @Inject constructor(
-    private val service: RepApi
+    private val api: RepApi
 ) : RepRepository {
 
-    override suspend fun getReps(query: String): Flow<PagingData<Rep>> = Pager(
+    override suspend fun findAllByQuery(query: String): Flow<PagingData<Rep>> = Pager(
         config = PagingConfig(pageSize = 20, prefetchDistance = 5),
         pagingSourceFactory = {
-            RepPagingDataSource(service = service, query = query)
+            RepPagingDataSource(api = api, query = query)
         }
     ).flow
 }
