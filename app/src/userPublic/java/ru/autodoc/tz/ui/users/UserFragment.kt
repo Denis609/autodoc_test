@@ -15,9 +15,9 @@ import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import ru.autodoc.tz.R
-import ru.autodoc.tz.base.BaseFragment
-import ru.autodoc.tz.data.model.User
 import ru.autodoc.tz.databinding.UserFragmentBinding
+import ru.autodoc.tz.domain.user.User
+import ru.autodoc.tz.base.BaseFragment
 import ru.autodoc.tz.utils.ImageLoader
 
 @AndroidEntryPoint

@@ -6,7 +6,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import ru.autodoc.tz.R
-import ru.autodoc.tz.data.model.Rep
+import ru.autodoc.tz.domain.rep.Rep
 import ru.autodoc.tz.databinding.RepsItemBinding
 import ru.autodoc.tz.utils.ImageLoader
 import java.text.SimpleDateFormat

@@ -22,7 +22,7 @@
 
         <argument
             android:name="rep"
-            app:argType="ru.autodoc.tz.data.model.Rep" />
+            app:argType="ru.autodoc.tz.domain.rep.Rep" />
     </fragment>
 
     <fragment

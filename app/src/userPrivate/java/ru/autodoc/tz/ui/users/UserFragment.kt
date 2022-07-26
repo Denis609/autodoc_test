@@ -13,6 +13,7 @@ import ru.autodoc.tz.base.BaseFragment
 import ru.autodoc.tz.databinding.UserFragmentBinding
 import ru.autodoc.tz.utils.ImageLoader
 
+
 @AndroidEntryPoint
 class UserFragment : BaseFragment() {
     private lateinit var binding: UserFragmentBinding

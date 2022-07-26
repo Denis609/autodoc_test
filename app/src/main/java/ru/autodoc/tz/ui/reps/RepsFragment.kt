@@ -18,7 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import ru.autodoc.tz.R
 import ru.autodoc.tz.base.BaseFragment
-import ru.autodoc.tz.data.model.Rep
+import ru.autodoc.tz.domain.rep.Rep
 import ru.autodoc.tz.databinding.RepsFragmentBinding
 import ru.autodoc.tz.utils.PagingLoadStateAdapter
 

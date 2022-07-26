@@ -56,6 +56,9 @@ android {
 dependencies {
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
 
+    implementation project(":domain")
+    runtimeOnly project(":data")
+
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation 'com.google.android.material:material:1.6.1'
@@ -68,11 +71,6 @@ dependencies {
     // hilt
     implementation 'com.google.dagger:hilt-android:2.42'
     kapt 'com.google.dagger:hilt-android-compiler:2.42'
-
-    // network
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.10.0'
 
     // paging
     implementation "androidx.paging:paging-runtime:3.1.1"
@@ -88,11 +86,6 @@ dependencies {
 
     // swipe
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
-
-    // room
-    implementation 'androidx.room:room-runtime:2.4.2'
-    kapt "androidx.room:room-compiler:2.4.2"
-    implementation 'androidx.room:room-ktx:2.4.2'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

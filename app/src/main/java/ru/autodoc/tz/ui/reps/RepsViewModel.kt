@@ -7,20 +7,20 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import ru.autodoc.tz.base.BaseViewModel
-import ru.autodoc.tz.data.model.Rep
-import ru.autodoc.tz.data.repository.reps.RepsRepository
+import ru.autodoc.tz.domain.rep.Rep
+import ru.autodoc.tz.domain.rep.RepGetUseCase
 import javax.inject.Inject
 
 @HiltViewModel
 class RepsViewModel @Inject constructor(
-    private val server: RepsRepository
+    private val getRepsUseCase: RepGetUseCase
 ) : BaseViewModel() {
 
     val reps = MutableStateFlow<PagingData<Rep>?>(null)
 
     fun getReps(query: String) {
         viewModelScope.launch(Dispatchers.IO + handler) {
-            server.getReps(query = query)
+            getRepsUseCase.execute(query = query)
                 .cachedIn(scope = viewModelScope)
                 .collect {
                     reps.value = it
