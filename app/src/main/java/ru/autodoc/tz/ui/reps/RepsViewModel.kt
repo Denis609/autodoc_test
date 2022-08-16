@@ -15,15 +15,15 @@ import javax.inject.Inject
 class RepsViewModel @Inject constructor(
     private val repFindAllByQueryUseCase: RepFindAllByQueryUseCase
 ) : BaseViewModel() {
-
-    val reps = MutableStateFlow<PagingData<Rep>?>(null)
+    private val _reps = MutableStateFlow<PagingData<Rep>?>(null)
+    val reps: StateFlow<PagingData<Rep>?> = _reps
 
     fun getReps(query: String) {
         viewModelScope.launch(Dispatchers.IO + handler) {
             repFindAllByQueryUseCase.execute(query = query)
                 .cachedIn(scope = viewModelScope)
                 .collect {
-                    reps.value = it
+                    _reps.value = it
                 }
         }
     }

@@ -92,8 +92,8 @@ class UserFragment : BaseFragment() {
     private fun setFollow(following: Int, followers: Int) {
         binding.follow.text = getString(
             R.string.follow_s_s,
-            following,
-            followers
+            following.toString(),
+            followers.toString()
         )
     }
 
